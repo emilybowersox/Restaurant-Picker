@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Form } from "react-bootstrap";
+import RestaurantPicker from './RestaurantPicker';
+import RestaurantList from './RestaurantList';
+import RestaurantForm from './RestaurantForm';
 
 
 const RestaurantScreen = () => {
@@ -46,78 +48,33 @@ const RestaurantScreen = () => {
         }
     ];
 
+    
+    // const [newRestaurant, setNewRestaurant] = useState({ name: "", foodType: "", genre: "" });
+
+
     const [restaurants, setRestaurants] = useState(restaurantArray);
-    const [newRestaurant, setNewRestaurant] = useState({ name: "", foodType: "", genre: "" });
     const [generatedRestaurant, setGeneratedRestaurant] = useState("");
 
-    function handleNameChange(event) {
-        //this was what i needed!
-        setNewRestaurant( {...newRestaurant, name: event.target.value } )
+    const handleAddRestaurant = (dataFromForm) => {
+        setRestaurants((prevRestaurants) => {
+            return   [...restaurants, dataFromForm];
+        });
+        };
+
+    const handlePickRestaurant = (randomRestaurantsIndex) => {
+        setGeneratedRestaurant(restaurants[randomRestaurantsIndex].name);
     }
-
-    function handleFoodTypeChange(event) {
-        //this was what i needed!
-        setNewRestaurant( {...newRestaurant, foodType: event.target.value } )
-    }
-
-    function handleGenreChange(event) {
-        //this was what i needed!
-        setNewRestaurant( {...newRestaurant, genre: event.target.value } )
-    }
-
-    function handleAddRestaurant() {
-        setRestaurants([...restaurants, newRestaurant]);
-        console.log(newRestaurant);
-        console.log(restaurants);
-    }
-
-
-    function handlePickRestaurant() {
-        setGeneratedRestaurant(restaurants[Math.floor(Math.random()*restaurants.length)]);
-    }
-
-    //break out components to other files
-
-
-
-    //generate random restuarant 
-    //sort by price, outdoor seating, type- and generate from that sublist
 
     return (
         <div>
-            <h2>Restaurant Picker</h2>
-            <p>Where should we eat?</p>
+            <RestaurantList items={restaurants} />
+         
+            <RestaurantForm onAddRestaurant={handleAddRestaurant} />
 
-            <button type="button" onClick={handlePickRestaurant}>Pick a restaurant for me!</button>
-
-            <h1>{generatedRestaurant.name}</h1>
-
-            <ul>
-                {restaurants.map((item, index) => (
-                    <li key={index}><b>{item.name}</b>
-                        <ul>
-                        <li>{item.foodType}</li>
-                        <li>{item.genre}</li>
-                        </ul>
-                    </li>
-                ))}
-            </ul>
-
-            
-            <form>
-                <Form.Group className="mb-3" controlId="formBasic">
-                    <Form.Label>Add a restaurant:</Form.Label>
-                    <Form.Control type="text" value={newRestaurant.name} onChange={handleNameChange} placeholder="name" />
-                    <Form.Control type="text" value={newRestaurant.foodType} onChange={handleFoodTypeChange} placeholder="food type" />
-                    <Form.Control type="text" value={newRestaurant.genre} onChange={handleGenreChange} placeholder="restaurant genre" />
-                    <Button type="button" onClick={handleAddRestaurant}>Add Restaurant</Button>
-                </Form.Group>
-            </form>
-
+            <RestaurantPicker onPickRestaurant={handlePickRestaurant} items={restaurants} displayPickedRestaurant={generatedRestaurant} />
         </div>
     )
-
-
+        
 }
 
 export default RestaurantScreen;
