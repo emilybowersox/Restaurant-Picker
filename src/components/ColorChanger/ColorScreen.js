@@ -1,7 +1,7 @@
 import React from 'react';
 import ColorChanger from './ColorChanger';
 
-const HomeScreen = () => {
+const ColorScreen = () => {
     // const colorArray = [
     //     "ffffff",
     //     "F08080",
@@ -17,7 +17,6 @@ const HomeScreen = () => {
 
         <div className="App">
             <header className="App-header">
-                 <h1>Home Screen</h1>
                 <ColorChanger />
             </header>
         </div>
@@ -25,4 +24,4 @@ const HomeScreen = () => {
     )
 }
 
-export default HomeScreen;
+export default ColorScreen;

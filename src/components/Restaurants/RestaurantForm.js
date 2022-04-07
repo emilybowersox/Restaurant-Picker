@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 
 const RestaurantForm = (props) => {
  
-    const [newRestaurant, setNewRestaurant] = useState({ name: "", foodType: "", genre: "" });
+    const [newRestaurant, setNewRestaurant] = useState({ name: "", foodType: "", genre: "", price: "" });
 
     function handleNameChange(event) {
         //this was what i needed!
@@ -18,16 +18,21 @@ const RestaurantForm = (props) => {
         setNewRestaurant( {...newRestaurant, genre: event.target.value } )
     }
 
+    function handlePriceChange(event) {
+        setNewRestaurant( {...newRestaurant, price: event.target.value } )
+    }
+
 
     function handleSaveRestaurant() {
         const newRestaurantData = {
             name:newRestaurant.name,
             foodType: newRestaurant.foodType,
-            genre: newRestaurant.genre
+            genre: newRestaurant.genre,
+            price: newRestaurant.price
         }
 
         props.onAddRestaurant(newRestaurantData);
-        setNewRestaurant( { name: "", foodType: "", genre: ""} );
+        setNewRestaurant( { name: "", foodType: "", genre: "", price: "" } );
     }
 
 
@@ -38,6 +43,8 @@ const RestaurantForm = (props) => {
                     <Form.Control type="text" value={newRestaurant.name} onChange={handleNameChange} placeholder="name" />
                     <Form.Control type="text" value={newRestaurant.foodType} onChange={handleFoodTypeChange} placeholder="food type" />
                     <Form.Control type="text" value={newRestaurant.genre} onChange={handleGenreChange} placeholder="restaurant genre" />
+                    <Form.Control type="text" value={newRestaurant.price} onChange={handlePriceChange} placeholder="price" />
+                    <br />
                     <Button type="button" onClick={handleSaveRestaurant}>Add Restaurant</Button>
                 </Form.Group>
         </div>

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import RestaurantPicker from './RestaurantPicker';
+import PickRestaurant from './PickRestaurant';
 import RestaurantList from './RestaurantList';
 import RestaurantForm from './RestaurantForm';
-
+import FilterRestaurants from './FilterRestaurants'
 
 const RestaurantScreen = () => {
+
     const restaurantArray = [
         {
             name: "Torchy's",
@@ -48,33 +49,43 @@ const RestaurantScreen = () => {
         }
     ];
 
-    
-    // const [newRestaurant, setNewRestaurant] = useState({ name: "", foodType: "", genre: "" });
-
-
     const [restaurants, setRestaurants] = useState(restaurantArray);
+    // const [filterCriteria, setFilterCriteria] = useState("");
+    // const [filteredRestaurants, setFilteredRestaurants] = useState(restaurants);
     const [generatedRestaurant, setGeneratedRestaurant] = useState("");
 
     const handleAddRestaurant = (dataFromForm) => {
         setRestaurants((prevRestaurants) => {
-            return   [...restaurants, dataFromForm];
+            return [...restaurants, dataFromForm];
         });
-        };
+    };
+
+    // const handleFilterCriteria = (dataFromFilter) => {
+    //     setFilterCriteria(dataFromFilter);
+    //     console.log("filter criteria: ", filterCriteria);
+    // }
+    // (goes in RestaurantFilters component)
+    //onFilterCriteria={handleFilterCriteria} 
 
     const handlePickRestaurant = (randomRestaurantsIndex) => {
         setGeneratedRestaurant(restaurants[randomRestaurantsIndex].name);
     }
 
     return (
-        <div>
+        <div>    
+            <FilterRestaurants items={restaurants} />
+            <br />
+            <br />
+            <PickRestaurant onPickRestaurant={handlePickRestaurant} items={restaurants} displayPickedRestaurant={generatedRestaurant}  />
+            <br/>
+            <br/>
             <RestaurantList items={restaurants} />
-         
+            <br/>
+            <br/>
             <RestaurantForm onAddRestaurant={handleAddRestaurant} />
 
-            <RestaurantPicker onPickRestaurant={handlePickRestaurant} items={restaurants} displayPickedRestaurant={generatedRestaurant} />
         </div>
     )
-        
 }
 
 export default RestaurantScreen;

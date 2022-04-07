@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 
-const RestaurantPicker = (props) => {
+const PickRestaurant = (props) => {
 
   function handlePickerClick() {
     let restaurantsLength = props.items.length;
@@ -13,12 +13,11 @@ const RestaurantPicker = (props) => {
   return (
     <div>
       <Form.Group className="mb-3" controlId="formBasic">
-        <Form.Label><b>Where should we eat?</b></Form.Label>
-        <br />
+        <h2>Where should we eat?</h2>
         <Button type="button" onClick={handlePickerClick}>Restaurant Picker</Button>
       </Form.Group>
 
-      <h2>{props.displayPickedRestaurant}</h2>
+      <h4>Eat here: {props.displayPickedRestaurant}</h4>
     </div>
   )
 
@@ -26,4 +25,4 @@ const RestaurantPicker = (props) => {
 
 }
 
-export default RestaurantPicker;
+export default PickRestaurant;

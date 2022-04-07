@@ -11,6 +11,7 @@ const RestaurantList = (props) => {
                              <ul>
                                  <li>{item.foodType}</li>
                                  <li>{item.genre}</li>
+                                 <li>{item.price}</li>
                              </ul>
                          </li>
                 ))}
