@@ -79,10 +79,10 @@ const RestaurantScreen = () => {
             <PickRestaurant onPickRestaurant={handlePickRestaurant} items={restaurants} displayPickedRestaurant={generatedRestaurant}  />
             <br/>
             <br/>
-            <RestaurantList items={restaurants} />
+            {/* <RestaurantList items={restaurants} /> */}
             <br/>
             <br/>
-            <RestaurantForm onAddRestaurant={handleAddRestaurant} />
+            {/* <RestaurantForm onAddRestaurant={handleAddRestaurant} /> */}
 
         </div>
     )

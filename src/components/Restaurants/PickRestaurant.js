@@ -13,11 +13,11 @@ const PickRestaurant = (props) => {
   return (
     <div>
       <Form.Group className="mb-3" controlId="formBasic">
-        <h2>Where should we eat?</h2>
-        <Button type="button" onClick={handlePickerClick}>Restaurant Picker</Button>
+        <Button type="button" onClick={handlePickerClick}>Pick for me!</Button>
       </Form.Group>
 
-      <h4>Eat here: {props.displayPickedRestaurant}</h4>
+      <p>Eat here:</p>
+      <h1>{props.displayPickedRestaurant}</h1>
     </div>
   )
 
